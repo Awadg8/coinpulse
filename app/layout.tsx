@@ -15,7 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "CoinPulse",
-  description: "Crypto Screener App with a built-in High-Frequency Terminal & Dashboard",
+  description:
+    "Crypto Screener App with a built-in High-Frequency Terminal & Dashboard",
 };
 
 export default function RootLayout({
@@ -30,7 +31,8 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <Header />
-        {children}</body>
+        {children}
+      </body>
     </html>
   );
 }
