@@ -1,9 +1,5 @@
 const page = () => {
-  return (
-    <div className="text-red-500 text-3xl">
-      <h1>Home</h1>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default page;
