@@ -3,6 +3,8 @@ import { CoinOverviewFallback, TrendingCoinsFallback } from "@/components/home/f
 import TrendingCoins from "@/components/home/TrendingCoins";
 import { Suspense } from "react";
 
+export const dynamic = "force-dynamic";
+
 const page = async () => {
   return (
     <main className="main-container">
