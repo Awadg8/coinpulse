@@ -1,21 +1,22 @@
 import CoinOverview from "@/components/home/CoinOverview";
-import { CoinOverviewFallback, TrendingCoinsFallback } from "@/components/home/fallback";
+import {
+  CoinOverviewFallback,
+  TrendingCoinsFallback,
+} from "@/components/home/fallback";
 import TrendingCoins from "@/components/home/TrendingCoins";
 import { Suspense } from "react";
-
-export const dynamic = "force-dynamic";
 
 const page = async () => {
   return (
     <main className="main-container">
       <section className="home-grid">
-        <Suspense fallback={<CoinOverviewFallback />}>
+        {/* <Suspense fallback={<CoinOverviewFallback />}> */}
           <CoinOverview />
-        </Suspense>
+        {/* </Suspense> */}
 
-        <Suspense fallback={<TrendingCoinsFallback />}>
+        {/* <Suspense fallback={<TrendingCoinsFallback />}> */}
           <TrendingCoins />
-        </Suspense>
+        {/* </Suspense> */}
       </section>
 
       <section className="w-full mt-7 space-y-4">
