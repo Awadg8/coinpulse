@@ -21,9 +21,9 @@ export async function fetcher<T>(
   });
 
   const text = await response.text();
-  console.log(response);
-  console.log("RAW RESPONSE TEXT:", text);
-  console.log("RAW RESPONSE URL:", url);
+  // console.log(response);
+  // console.log("RAW RESPONSE TEXT:", text);
+  // console.log("RAW RESPONSE URL:", url);
 
   if (!response.ok) {
     throw new Error(`API Error: ${response.status}: ${text}`);
