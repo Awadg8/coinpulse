@@ -10,20 +10,20 @@ export async function fetcher<T>(
   endpoint: string,
   params?: QueryParams,
 ): Promise<T> {
-  const url = `${process.env.COINGECKO_BASE_URL!.replace(/\/$/, "")}/${endpoint.replace(/^\//, "")}`;
+  const url = `${BASE_URL!.replace(/\/$/, "")}/${endpoint.replace(/^\//, "")}`;
 
   const response = await fetch(url, {
     method: "GET",
     headers: {
-      "x-cg-demo-api-key": String(process.env.API_KEY),
+      "x-cg-demo-api-key": API_KEY!,
     },
     cache: "no-store",
   });
 
   const text = await response.text();
-  // console.log(response);
-  // console.log("RAW RESPONSE TEXT:", text);
-  // console.log("RAW RESPONSE URL:", url);
+  console.log(response);
+  console.log("RAW RESPONSE TEXT:", text);
+  console.log("RAW RESPONSE URL:", url);
 
   if (!response.ok) {
     throw new Error(`API Error: ${response.status}: ${text}`);
