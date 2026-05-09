@@ -119,3 +119,44 @@ export const buildPageNumbers = (
 
   return pages;
 };
+
+export function formatSmallPrice(price: number) {
+  if (!Number.isFinite(price)) return "$0.00";
+  if (price === 0) return "$0.00";
+
+  // For prices >= 1, show standard 2 decimal places
+  if (price >= 1) {
+    return price.toLocaleString(undefined, {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  }
+
+  const priceStr = price.toFixed(20);
+  const match = priceStr.match(/^0\.(0+)(\d+)/);
+
+  if (match) {
+    const zeroCount = match[1].length;
+    const significantDigits = match[2].slice(0, 4);
+
+    // Tiny prices: use subscript format
+    if (zeroCount > 3) {
+      return (
+        <span className="inline-flex items-baseline">
+          $0.0<sub className="text-[0.7em] mx-0.5">{zeroCount}</sub>
+          {significantDigits}
+        </span>
+      );
+    }
+  }
+
+  // Small prices: show exactly 5 digits after the decimal
+  return price.toLocaleString(undefined, {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 5,
+    maximumFractionDigits: 5,
+  });
+}
