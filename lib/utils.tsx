@@ -121,6 +121,7 @@ export const buildPageNumbers = (
 };
 
 export function formatSmallPrice(price: number) {
+  if (!Number.isFinite(price)) return "$0.00";
   if (price === 0) return "$0.00";
 
   // For prices >= 1, show standard 2 decimal places
