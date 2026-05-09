@@ -1,5 +1,5 @@
 import { fetcher } from "@/lib/coingecko.action";
-import { cn } from "@/lib/utils";
+import { cn, formatSmallPrice } from "@/lib/utils";
 import DataTable from "../DataTable";
 import Link from "next/link";
 import Image from "next/image";
@@ -61,7 +61,7 @@ const TrendingCoins = async () => {
     {
       header: "Price",
       cellClassName: "price-cell",
-      cell: (coin) => coin.item.data.price,
+      cell: (coin) => formatSmallPrice(coin.item.data.price),
     },
   ];
 

@@ -37,7 +37,7 @@ const CandlestickChart = ({
       const { days, interval } = PERIOD_CONFIG[selectedPeriod];
 
       const newData = await fetcher<OHLCData[]>(
-        "/coins/bitcoin/ohlc?vs_currency=usd",
+        `/coins/bitcoin/ohlc?vs_currency=usd&days=${days}`,
         {
           vs_currency: "usd",
           days,
