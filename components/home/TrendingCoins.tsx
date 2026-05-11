@@ -1,5 +1,5 @@
 import { fetcher } from "@/lib/coingecko.action";
-import { cn, formatSmallPrice } from "@/lib/utils";
+import { cn, formatPercentage, formatSmallPrice } from "@/lib/utils";
 import DataTable from "../DataTable";
 import Link from "next/link";
 import Image from "next/image";
@@ -47,7 +47,8 @@ const TrendingCoins = async () => {
               isTrendingUp ? "text-green-500" : "text-red-500",
             )}
           >
-            <p>
+            <p className="flex items-center gap-1">
+              {formatPercentage(item.data.price_change_percentage_24h.usd)}
               {isTrendingUp ? (
                 <TrendingUp width={16} height={16} />
               ) : (
