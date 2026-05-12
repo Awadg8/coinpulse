@@ -31,7 +31,7 @@ const Coins = async ({ searchParams }: NextPageProps) => {
       cell: (coin) => (
         <>
           #{coin.market_cap_rank}
-          <Link href={`coins/${coin.id}`} aria-label="View coin" />
+          <Link href={`/coins/${coin.id}`} aria-label="View coin" />
         </>
       ),
     },
