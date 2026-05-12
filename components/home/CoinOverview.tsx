@@ -11,10 +11,9 @@ const CoinOverview = async () => {
         dex_pair_format: "symbol",
       }),
 
-      fetcher<OHLCData[]>("coins/bitcoin/ohlc?vs_currency=usd&days=1", {
+      fetcher<OHLCData[]>("coins/bitcoin/ohlc", {
         vs_currency: "usd",
         days: "1",
-        interval: "hourly",
         precision: "full",
       }),
     ]);
