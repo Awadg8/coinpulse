@@ -35,6 +35,7 @@ const Categories = async () => {
             )}
           >
             <p className="flex items-center gap-1">
+              {isTrendingUp && "+"}
               {formatPercentage(catergory.market_cap_change_24h)}
               {isTrendingUp ? (
                 <TrendingUp width={16} height={16} />
