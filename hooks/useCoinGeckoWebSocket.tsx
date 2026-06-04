@@ -1,6 +1,8 @@
+'use client'
+
 import { useEffect, useRef, useState } from "react";
 
-const WS_BASE = `${process.env.NEXT_PUBLIC_COINGECKO_WEBSOCKET_URL}?x_cg_demo_api_key=${process.env.NEXT_PUBLIC_COINGECKO_API_KEY}`;
+const WS_BASE = `${process.env.NEXT_PUBLIC_COINGECKO_WEBSOCKET_URL}?x_cg_pro_api_key=${process.env.NEXT_PUBLIC_COINGECKO_API_KEY}`;
 
 export const useCoinGeckoWebsocket = ({
   coinId,
@@ -106,7 +108,7 @@ export const useCoinGeckoWebsocket = ({
     };
 
     const subscribe = (channel: string, data?: Record<string, unknown>) => {
-      if (subscribe.current.has(channel)) return;
+      if (subscribed.current.has(channel)) return;
 
       send({
         command: "subscribe",
