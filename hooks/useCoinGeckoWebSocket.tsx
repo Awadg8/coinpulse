@@ -27,6 +27,7 @@ export const useCoinGeckoWebsocket = ({
 
     const handleMessage = (event: MessageEvent) => {
       const msg: WebSocketMessage = JSON.parse(event.data);
+      console.log("WebSocket Message Received:", msg);
 
       if (msg.type === "ping") {
         send({ event: "pong" });
@@ -133,7 +134,7 @@ export const useCoinGeckoWebsocket = ({
 
       subscribe("CGSimplePrice", {
         coin_id: [coinId],
-        action: "set tokens  ",
+        action: "set tokens",
       });
     });
 
