@@ -14,7 +14,7 @@ const TrendingCoins = async () => {
       undefined,
     );
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return <TrendingCoinsFallback />;
   }
 
