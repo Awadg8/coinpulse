@@ -70,7 +70,7 @@ export const useCoinGeckoWebsocket = ({
           value: msg.vo,
           timestamp: msg.t ?? 0,
           type: msg.ty,
-          amount: msg.to as unknown as number,
+          amount: msg.to,
         };
 
         setTrades((prev) => [newTrade, ...prev].slice(0, 7));
@@ -142,7 +142,8 @@ export const useCoinGeckoWebsocket = ({
 
       subscribe("CGSimplePrice", {
         coin_id: [coinId],
-        action: "set tokens",
+        vs_currencies: ["usd"],
+        action: "set_tokens",
       });
 
       const poolAddress = poolId.replace("_", ":");
