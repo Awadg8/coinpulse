@@ -97,6 +97,11 @@ export const useCoinGeckoWebsocket = ({
 
     ws.onclose = () => setIsWsReady(false);
 
+    ws.onerror = (err) => {
+      console.error("WebSocket Error:", err);
+      setIsWsReady(false);
+    };
+
     return () => ws.close();
   }, []);
 
@@ -146,7 +151,7 @@ export const useCoinGeckoWebsocket = ({
         action: "set_tokens",
       });
 
-      const poolAddress = poolId.replace("_", ":");
+      const poolAddress = poolId.replace("_", ":") ?? '';
 
       if (poolAddress) {
         subscribe("OnchainTrade", {

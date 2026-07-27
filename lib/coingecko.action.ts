@@ -55,10 +55,14 @@ export async function getPools(
   };
 
   if (network && contactAddress) {
-    const poolData = await fetcher<{ data: PoolData[] }>(
-      `/onchain/networks/${network}/tokens/${contactAddress}/pools`,
-    );
-    return poolData.data?.[0] ?? fallback;
+    try {
+      const poolData = await fetcher<{ data: PoolData[] }>(
+        `/onchain/networks/${network}/tokens/${contactAddress}/pools`,
+      );
+      return poolData.data?.[0] ?? fallback;
+    } catch (error) {
+      return fallback;
+    }
   }
 
   try {
