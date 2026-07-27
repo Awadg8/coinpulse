@@ -5,6 +5,7 @@ import CandlestickChart from "./CandlestickChart";
 import { useCoinGeckoWebsocket } from "@/hooks/useCoinGeckoWebSocket";
 import { Separator } from "./ui/separator";
 import { formatCurrency, timeAgo } from "@/lib/utils";
+import CoinHeader from "./CoinHeader";
 
 const LiveDataWrapper = ({
   coinId,
@@ -14,11 +15,14 @@ const LiveDataWrapper = ({
   children,
 }: LiveDataProps) => {
   const [liveInterval, setLiveInterval] = useState<"1s" | "1m">("1s");
-  const { trades, ohlcv } = useCoinGeckoWebsocket({
+  const { trades, ohlcv, price } = useCoinGeckoWebsocket({
     coinId,
     poolId,
     liveInterval,
   });
+
+  console.log("Price:zz ", price);
+
 
   const tradeColumns: DataTableColumn<Trade>[] = [
     {
@@ -27,7 +31,7 @@ const LiveDataWrapper = ({
       cell: (trade) => (trade.price ? formatCurrency(trade.price) : "-"),
     },
     {
-      header: "Amount",
+      header: "Quantity",
       cellClassName: "amount-cell",
       cell: (trade) => trade.amount?.toFixed(4) ?? "-",
     },
@@ -56,8 +60,14 @@ const LiveDataWrapper = ({
 
   return (
     <section id="live-data-wrapper">
-      <h2>Live Data Wrapper</h2>
-
+      <CoinHeader
+        name={coin.name}
+        image={coin.image.large}
+        livePrice={price?.usd ?? coin.market_data.current_price.usd}
+        livePriceChangePercentage24h={price?.change24h ?? coin.market_data.price_change_percentage_24h_in_currency.usd}
+        priceChangePercentage30d={coin.market_data.price_change_percentage_30d_in_currency.usd}
+        priceChange24h={coin.market_data.price_change_percentage_24h_in_currency.usd}
+      />
       <Separator className="divider" />
 
       <div className="trend">
