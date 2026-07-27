@@ -3,6 +3,14 @@ import { useState } from "react"
 import { Input } from "./ui/input"
 import Image from "next/image"
 import { formatCurrency } from "@/lib/utils"
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 
 const Converter = ({
     symbol,
@@ -37,7 +45,20 @@ const Converter = ({
                 <div className="output-wrapper">
                     <p>{formatCurrency(convertedPrice, 2, currency, false)}</p>
 
-                    
+                    <Select value={currency} onValueChange={setCurrency}>
+                        <SelectTrigger className="select-trigger" value={currency}>
+                            <SelectValue placeholder="Select" className="select-value">
+                                {currency.toUpperCase()}
+                            </SelectValue>
+                        </SelectTrigger>
+                        <SelectContent className="select-content" data-converter>
+                            {Object.keys(priceList).map((currencyCode) => (
+                                <SelectItem key={currencyCode} value={currencyCode} className="select-item">
+                                    {currencyCode.toUpperCase()}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
                 </div>
             </div>
         </div>
