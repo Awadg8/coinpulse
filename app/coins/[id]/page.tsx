@@ -1,3 +1,4 @@
+import Converter from "@/components/Converter";
 import LiveDataWrapper from "@/components/LiveDataWrapper";
 import { fetcher, getPools } from "@/lib/coingecko.action";
 import { formatCurrency } from "@/lib/utils";
@@ -64,11 +65,15 @@ const page = async ({ params }: NextPageProps) => {
         <LiveDataWrapper coinId={id} poolId={pool.id} coin={coinData} coinOHLCData={coinOHLCData}>
           <h4>Exchange Listing</h4>
         </LiveDataWrapper>
-        
+
       </section>
 
       <section className="secondary">
-        <p>Converter</p>
+        <Converter
+          symbol={coinData.symbol}
+          icon={coinData.image.small}
+          priceList={coinData.market_data.current_price}
+        />
 
         <div className="details">
           <h4>Coins Details</h4>
