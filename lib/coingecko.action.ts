@@ -75,3 +75,22 @@ export async function getPools(
     return fallback;
   }
 }
+
+export async function searchCoins(query: string): Promise<SearchCoin[]> {
+  if (!query) return [];
+  try {
+    const response = await fetcher<{ coins: SearchCoin[] }>("/search", { query });
+    return response.coins || [];
+  } catch (error) {
+    return [];
+  }
+}
+
+export async function getTrendingCoins(): Promise<TrendingCoin[]> {
+  try {
+    const data = await fetcher<{ coins: TrendingCoin[] }>("/search/trending");
+    return data.coins || [];
+  } catch (error) {
+    return [];
+  }
+}
