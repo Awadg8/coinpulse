@@ -4,7 +4,7 @@ import DataTable from "./DataTable";
 import CandlestickChart from "./CandlestickChart";
 import { useCoinGeckoWebsocket } from "@/hooks/useCoinGeckoWebSocket";
 import { Separator } from "./ui/separator";
-import { formatCurrency, timeAgo } from "@/lib/utils";
+import { formatCurrency, formatSmallPrice, timeAgo } from "@/lib/utils";
 import CoinHeader from "./CoinHeader";
 
 const LiveDataWrapper = ({
@@ -28,7 +28,7 @@ const LiveDataWrapper = ({
     {
       header: "Price",
       cellClassName: "price-cell",
-      cell: (trade) => (trade.price ? formatCurrency(trade.price) : "-"),
+      cell: (trade) => (trade.price ? formatSmallPrice(trade.price) : "-"),
     },
     {
       header: "Quantity",

@@ -29,9 +29,9 @@ const Converter = ({
 
             <div className="panel">
                 <div className="input-wrapper">
-                    <Input type="number" placeholder="amount" value={amount} onChange={(e) => setAmount(e.target.value)} className="input" />
+                    <Input type="number" placeholder="Quantity" value={amount} onChange={(e) => setAmount(e.target.value)} className="input" />
                     <div className="coin-info">
-                        <Image src={icon} alt={symbol} width={20} height={20} />
+                        <Image src={icon} alt={symbol} width={20} height={20} className="rounded" />
                         <p>{symbol.toUpperCase()}</p>
                     </div>
                 </div>
