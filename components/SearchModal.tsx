@@ -27,7 +27,7 @@ const SearchItem = ({ coin, onSelect, isActiveName }: SearchItemProps) => {
 
   const change = isSearchCoin
     ? (coin as SearchCoin).data?.price_change_percentage_24h ?? 0
-    : (coin as TrendingCoin['item']).data.price_change_percentage_24h?.usd ?? 0;
+    : (coin as TrendingCoin['item']).data?.price_change_percentage_24h?.usd ?? 0;
 
   return (
     <CommandItem
@@ -168,7 +168,7 @@ export const SearchModal = ({
 
           {isResultsVisible && (
             <CommandGroup
-              heading={<p className='heading'>Search Results</p>}
+              // heading={<p className='heading'>Search Results</p>}
               className='group'
             >
               {searchResults.slice(0, SEARCH_LIMIT).map((coin) => (
