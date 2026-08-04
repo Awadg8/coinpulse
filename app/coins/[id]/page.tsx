@@ -1,4 +1,5 @@
 import Converter from "@/components/Converter";
+import GainerLoser from "@/components/GainerLoser";
 import LiveDataWrapper from "@/components/LiveDataWrapper";
 import { fetcher, getPools } from "@/lib/coingecko.action";
 import { formatCurrency } from "@/lib/utils";
@@ -97,7 +98,7 @@ const page = async ({ params }: NextPageProps) => {
           </ul>
         </div>
 
-        <p>Top Gainer and Losers </p>
+        <GainerLoser />
       </section>
     </main>
   );
