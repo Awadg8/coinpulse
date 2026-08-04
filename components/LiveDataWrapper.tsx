@@ -21,7 +21,7 @@ const LiveDataWrapper = ({
     liveInterval,
   });
 
-  console.log("Price:zz ", price);
+  // console.log("Price:zz ", price);
 
 
   const tradeColumns: DataTableColumn<Trade>[] = [
