@@ -27,7 +27,7 @@ export async function fetcher<T>(
     headers: {
       "x-cg-pro-api-key": API_KEY!,
     },
-    cache: "no-store",
+    // cache: "no-store",
   });
 
   const text = await response.text();
