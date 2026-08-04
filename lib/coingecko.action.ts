@@ -80,7 +80,30 @@ export async function searchCoins(query: string): Promise<SearchCoin[]> {
   if (!query) return [];
   try {
     const response = await fetcher<{ coins: SearchCoin[] }>("/search", { query });
-    return response.coins || [];
+    const coins = response.coins || [];
+    
+    if (coins.length > 0) {
+      // Get up to 10 coin IDs to fetch their prices
+      const ids = coins.slice(0, 10).map((c) => c.id).join(",");
+      const prices = await fetcher<Record<string, { usd: number; usd_24h_change: number }>>(
+        "/simple/price",
+        {
+          ids,
+          vs_currencies: "usd",
+          include_24hr_change: true,
+        }
+      );
+
+      return coins.map((coin) => ({
+        ...coin,
+        data: {
+          price: prices[coin.id]?.usd,
+          price_change_percentage_24h: prices[coin.id]?.usd_24h_change ?? 0,
+        },
+      }));
+    }
+
+    return coins;
   } catch (error) {
     return [];
   }

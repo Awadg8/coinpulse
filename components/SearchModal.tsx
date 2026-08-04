@@ -22,12 +22,10 @@ const TRENDING_LIMIT = 8;
 const SEARCH_LIMIT = 10;
 
 const SearchItem = ({ coin, onSelect, isActiveName }: SearchItemProps) => {
-  const isSearchCoin =
-    typeof coin.data?.price_change_percentage_24h === 'number';
-
-  const change = isSearchCoin
-    ? (coin as SearchCoin).data?.price_change_percentage_24h ?? 0
-    : (coin as TrendingCoin['item']).data?.price_change_percentage_24h?.usd ?? 0;
+  const data = coin.data as any;
+  const change = typeof data?.price_change_percentage_24h === 'number'
+    ? data.price_change_percentage_24h
+    : data?.price_change_percentage_24h?.usd;
 
   return (
     <CommandItem
@@ -46,19 +44,21 @@ const SearchItem = ({ coin, onSelect, isActiveName }: SearchItemProps) => {
         </div>
       </div>
 
-      <div
-        className={cn('coin-change', {
-          'text-green-500': change > 0,
-          'text-red-500': change < 0,
-        })}
-      >
-        {change > 0 ? (
-          <TrendingUp size={14} className='text-green-500' />
-        ) : (
-          <TrendingDown size={14} className='text-red-500' />
-        )}
-        <span>{formatPercentage(Math.abs(change))}</span>
-      </div>
+      {change !== undefined && (
+        <div
+          className={cn('coin-change', {
+            'text-green-500': change > 0,
+            'text-red-500': change < 0,
+          })}
+        >
+          {change > 0 ? (
+            <TrendingUp size={14} className='text-green-500' />
+          ) : (
+            <TrendingDown size={14} className='text-red-500' />
+          )}
+          <span>{formatPercentage(Math.abs(change))}</span>
+        </div>
+      )}
     </CommandItem>
   );
 };
