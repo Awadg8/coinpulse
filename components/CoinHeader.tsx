@@ -1,4 +1,4 @@
-import { cn, formatCurrency, formatPercentage } from "@/lib/utils";
+import { cn, formatCurrency, formatPercentage, formatSmallPrice } from "@/lib/utils";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge"
 import { TrendingDown, TrendingUp } from "lucide-react";
@@ -46,7 +46,7 @@ const CoinHeader = ({
                 <Image src={image} alt={name} width={77} height={77} />
 
                 <div className="price-row">
-                    <h1>{formatCurrency(livePrice)}</h1>
+                    <h1>{formatSmallPrice(livePrice)}</h1>
                     <Badge
                         className={cn('badge', isTrendingUp ? 'badge-up' : 'badge-down')}
                     >
