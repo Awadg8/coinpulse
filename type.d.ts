@@ -115,8 +115,8 @@ interface TopGainersLosers {
   name: string;
   symbol: string;
   image: string;
-  price: number;
-  priceChangePercentage24h: number;
+  current_price: number;
+  price_change_percentage_24h: number;
 }
 
 interface TopGainersLosersResponse {
