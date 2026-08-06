@@ -4,6 +4,7 @@ import { fetcher } from "@/lib/coingecko.action";
 import { formatPercentage, formatSmallPrice } from "@/lib/utils";
 import { TrendingDown, TrendingUp } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export const TabContent = ({ list }: { list: TopGainersLosers[] }) => {
@@ -11,13 +12,13 @@ export const TabContent = ({ list }: { list: TopGainersLosers[] }) => {
         <ul className="gap-2 flex flex-col">
             {list.map((gainer, index) => (
                 <li key={index} className="tabs-content bg-dark-500 rounded-md p-3">
-                    <div className="flex gap-3 items-center">
+                    <Link href={`/coins/${gainer.id}`} className="flex gap-3 items-center">
                         <Image src={gainer.image} alt={gainer.name} width={40} height={40} />
                         <div>
                             <p className="text-sm font-medium">{gainer.name}</p>
                             <p className="text-xs uppercase text-purple-100 mt-1">{gainer.symbol}</p>
                         </div>
-                    </div>
+                    </Link>
                     <div className="flex flex-col items-end gap-0">
                         <p className="text-sm font-medium">{formatSmallPrice(gainer.current_price)}</p>
                         <div className={`flex items-center gap-1 text-xs mt-1 ${gainer.price_change_percentage_24h > 0 ? 'text-green-500' : 'text-red-500'}`}>
