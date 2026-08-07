@@ -763,11 +763,19 @@
     }
 
     .tabs-trigger {
-      @apply data-[state=active]:border-none! data-[state=active]:bg-transparent! flex justify-start! mb-0! py-2! text-lg! font-semibold! md:text-2xl!;
+      @apply data-[state=active]:border-none! data-[state=active]:bg-transparent! flex justify-start! mb-0! py-2! text-lg! font-semibold! md:text-2xl! text-purple-100;
+    }
+
+    .tabs-trigger.active {
+      @apply text-white!;
     }
 
     .tabs-content {
-      @apply gap-4! mt-2! md:gap-5! sm:grid-cols-2! lg:grid-cols-1! grid!;
+      @apply gap-4! md:gap-5! grid grid-cols-2;
+    }
+
+    .tabs-content li {
+      @apply flex items-center justify-between;
     }
   }
 
@@ -805,7 +813,7 @@
         }
 
         .value {
-          @apply flex gap-1 flex-1 items-end text-base font-medium;
+          @apply flex gap-1 flex-1 items-center text-base font-medium;
         }
       }
     }

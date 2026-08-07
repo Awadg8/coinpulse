@@ -1,4 +1,5 @@
 import Converter from "@/components/Converter";
+import GainerLoser from "@/components/GainerLoser";
 import LiveDataWrapper from "@/components/LiveDataWrapper";
 import { fetcher, getPools } from "@/lib/coingecko.action";
 import { formatCurrency } from "@/lib/utils";
@@ -65,7 +66,6 @@ const page = async ({ params }: NextPageProps) => {
         <LiveDataWrapper coinId={id} poolId={pool.id} coin={coinData} coinOHLCData={coinOHLCData}>
           <h4>Exchange Listing</h4>
         </LiveDataWrapper>
-
       </section>
 
       <section className="secondary">
@@ -97,7 +97,7 @@ const page = async ({ params }: NextPageProps) => {
           </ul>
         </div>
 
-        <p>Top Gainer and Losers </p>
+        <GainerLoser />
       </section>
     </main>
   );
