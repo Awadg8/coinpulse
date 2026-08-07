@@ -142,6 +142,16 @@ interface Trade {
   value?: number;
 }
 
+interface ExchangeListings {
+  market: {
+    name: string;
+  };
+  base?: string;
+  target?: string;
+  last?: number;
+  last_traded_at?: string;
+}
+
 interface ExtendedPriceData {
   usd: number;
   coin?: string;

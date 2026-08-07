@@ -21,9 +21,6 @@ const LiveDataWrapper = ({
     liveInterval,
   });
 
-  // console.log("Price:zz ", price);
-
-
   const tradeColumns: DataTableColumn<Trade>[] = [
     {
       header: "Price",
@@ -55,6 +52,37 @@ const LiveDataWrapper = ({
       header: "Time",
       cellClassName: "time-cell",
       cell: (trade) => (trade.timestamp ? timeAgo(trade.timestamp) : "-"),
+    },
+  ];
+
+  const exchangeListings: DataTableColumn<ExchangeListings>[] = [
+    {
+      header: "Exchange",
+      cellClassName: "price-cell",
+      cell: (coin) => (
+        <span className="text-green-500">
+          {coin.market?.name}
+        </span>
+      ),
+    },
+    {
+      header: "Pair",
+      cellClassName: "amount-cell",
+      cell: (coin) => {
+        const coinbase = coin.base ? `${coin.base.length > 12 ? coin.base?.slice(0, 12) + "..." : coin.base}` : "-";
+        const cointarget = coin.target ? `${coin.target.length > 12 ? coin.target?.slice(0, 12) + "..." : coin.target}` : "-";
+        return coinbase + " / " + cointarget
+      },
+    },
+    {
+      header: "Price",
+      cellClassName: "value-cell",
+      cell: (coin) => (formatSmallPrice(coin.last)),
+    },
+    {
+      header: "Last Traded",
+      cellClassName: "time-cell",
+      cell: (coin) => (coin.last_traded_at ? timeAgo(coin.last_traded_at) : "-"),
     },
   ];
 
@@ -93,6 +121,19 @@ const LiveDataWrapper = ({
           <DataTable
             columns={tradeColumns}
             data={trades}
+            rowKey={(_, index) => index}
+            tableClassName="trades-table"
+          />
+        </div>
+      )}
+
+      {exchangeListings && (
+        <div className="trades">
+          <h4>Exchange Listings</h4>
+
+          <DataTable
+            columns={exchangeListings}
+            data={coin.tickers.slice(0, 7)}
             rowKey={(_, index) => index}
             tableClassName="trades-table"
           />

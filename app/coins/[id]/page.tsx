@@ -66,7 +66,6 @@ const page = async ({ params }: NextPageProps) => {
         <LiveDataWrapper coinId={id} poolId={pool.id} coin={coinData} coinOHLCData={coinOHLCData}>
           <h4>Exchange Listing</h4>
         </LiveDataWrapper>
-
       </section>
 
       <section className="secondary">
